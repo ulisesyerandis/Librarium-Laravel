@@ -42,18 +42,4 @@ Route::get('/', function () {
          Route::delete('/book/{id}/{store_id}', [BookController::class, 'destroy']);
 
       
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::prefix('users')->group(function () {
-//         Route::get('/', [UserController::class, 'index']);
-//         Route::post('/{store_id}', [UserController::class, 'store']);
-//         Route::get('/{id}', [UserController::class, 'show']);
-//         Route::put('/{id}', [UserController::class, 'update']);
-//         Route::delete('/{id}/{store_id}', [UserController::class, 'destroy']);
-//     });
-// });
         
