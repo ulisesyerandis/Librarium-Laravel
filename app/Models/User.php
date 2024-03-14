@@ -49,7 +49,7 @@ class User extends Authenticatable
         // Relacion de mucho a mucho (store - users)
     public function stores()
     {
-        return $this->belongsToMany(Store::class,'store_user');
+        return $this->belongsToMany(Store::class,'store_user')->withPivot('book_purchase_count');
     }
 
     //  Relacion de mucho a mucho (book - users) 
@@ -57,4 +57,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Book::class, 'book_user');
     }
+
+    //  Contador de libros comprados por el usuario
+    public function incrementBookPurchaseCount()
+    {
+        $this->bookPurchaseCount++;
+        $this->save();
+    }
+
+//     public function incrementBookPurchaseCount($storeId)
+//     {
+//         $store = $this->stores()->where('store_id', $storeId)->first();
+//         if ($store) {    
+//             $pivot = $store->pivot;
+//             $pivot->book_purchase_count++;
+//             $pivot->save();
+//         }
+// }
 }

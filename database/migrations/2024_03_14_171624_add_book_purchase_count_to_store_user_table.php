@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::table('store_user', function (Blueprint $table) {
-            // $table->string('role')->default('user')->after('user_id');
-        // });
+        Schema::table('store_user', function (Blueprint $table) {
+            $table->unsignedInteger('book_purchase_count')->default(0)->after('user_id');
+        });
     }
 
     /**
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('store_user', function (Blueprint $table) {
-            //
+            $table->dropColumn('book_purchase_count');
         });
     }
 };
