@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::table('store_user', function (Blueprint $table) {
-        //     $table->unsignedInteger('book_purchase_count')->default(0)->after('user_id');
-        // });
+        Schema::create('sales', function (Blueprint $table) {
+            $table->id();
+            $table->string('store_id');
+            $table->string('user_id');
+            $table->string('book_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('store_user', function (Blueprint $table) {
-            $table->dropColumn('book_purchase_count');
-        });
+        Schema::dropIfExists('sales');
     }
 };

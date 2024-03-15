@@ -29,4 +29,10 @@ class Book extends Model
         {
             return $this->belongsToMany(Store::class, 'book_store');
         }
+
+        // many_to_one with sales
+        public function sales()
+        {
+            return $this->hasMany(Sale::class);
+        }
 }

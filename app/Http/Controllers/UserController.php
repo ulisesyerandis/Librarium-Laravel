@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\UserServices;
 use App\Models\User;
+use App\Models\Book;
+use App\Models\Store;
 use Illuminate\Http\Request;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
@@ -88,17 +90,23 @@ class UserController extends Controller
     ////////////////////////////////////////////////////////////////////
 
     // En el controlador donde se registra la compra del libro por parte del usuario
-public function purchaseBook(Request $request, $user)
+public function purchaseBook($book, $user, $store)
 {
     // $user = Auth::user(); // Obtener el usuario autenticado
     $user = User::find($user->id);
-    $bookId = $request->input('book_id');
-    // Lógica para registrar la compra del libro por parte del usuario
-            // metodo en desarrollo
-    // Incrementar el contador de compra del libro para el usuario actual
-    $user->incrementBookPurchaseCount();
+    $book = Book::find($book->id);
+    $store = Store::find($store->id);
 
-    return response()->json(['message' => 'Book purchased successfully'], 200);
+    if($user && $book && $store)
+    {
+        // Lógica para registrar la compra del libro por parte del usuario
+        // metodo en desarrollo
+        // Incrementar el contador de compra del libro para el usuario actual
+        $user->incrementBookPurchaseCount($store);
+        return response()->json(['message' => 'Book purchased successfully'], 200);
+    }
+    
+return response()->json(['message' => 'error'], 404);
 }
 
 }

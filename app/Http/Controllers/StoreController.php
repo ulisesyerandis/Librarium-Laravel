@@ -79,4 +79,10 @@ class StoreController extends Controller
         $store = $this->storeService->destroy($id);
         return response()->json($store);
     }
+    ///////////////////////////////////////////////////////////////////
+
+    // public function copiesSold()
+    // {
+
+    // }
 }

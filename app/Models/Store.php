@@ -41,4 +41,9 @@ class Store extends Model
     $this->users()->detach();
 }
 
+public function sales()
+{
+    return $this->hasMany(Sale::class);
+}
+
 }

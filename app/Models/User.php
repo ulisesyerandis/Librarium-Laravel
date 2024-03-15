@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -58,20 +59,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Book::class, 'book_user');
     }
 
-    //  Contador de libros comprados por el usuario
-    public function incrementBookPurchaseCount()
+    public function sale()    
     {
-        $this->bookPurchaseCount++;
-        $this->save();
+        return $this->hasMany(Sale::class);
     }
 
-//     public function incrementBookPurchaseCount($storeId)
-//     {
-//         $store = $this->stores()->where('store_id', $storeId)->first();
-//         if ($store) {    
-//             $pivot = $store->pivot;
-//             $pivot->book_purchase_count++;
-//             $pivot->save();
-//         }
-// }
 }
